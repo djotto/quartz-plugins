@@ -1,0 +1,55 @@
+{
+  "name": "@otton/explorer-override",
+  "version": "1.0.0",
+  "type": "module",
+  "description": "Quartz v5 Explorer behavior overrides for otton.org.",
+  "files": [
+    "dist",
+    "src",
+    "README.md"
+  ],
+  "exports": {
+    "./components": {
+      "types": "./src/components/index.tsx",
+      "import": "./dist/components/index.js"
+    }
+  },
+  "scripts": {
+    "build": "esbuild src/components/index.tsx --bundle --packages=external --platform=node --format=esm --target=node22 --outfile=dist/components/index.js",
+    "test": "node --import tsx --test \"src/**/*.test.ts\"",
+    "typecheck": "tsc --noEmit"
+  },
+  "peerDependencies": {
+    "@quartz-community/types": "^0.3.0"
+  },
+  "devDependencies": {
+    "@quartz-community/types": "^0.3.0",
+    "@types/node": "^25.0.10",
+    "esbuild": "^0.27.2",
+    "tsx": "^4.21.0",
+    "typescript": "^5.9.3"
+  },
+  "engines": {
+    "node": ">=22",
+    "npm": ">=10.9.2"
+  },
+  "quartz": {
+    "name": "explorer-override",
+    "displayName": "ExplorerOverride",
+    "description": "Project-specific Explorer behavior overrides.",
+    "version": "1.0.0",
+    "category": [
+      "component"
+    ],
+    "components": {
+      "ExplorerOverride": {
+        "name": "ExplorerOverride",
+        "displayName": "ExplorerOverride",
+        "description": "Suppresses Explorer auto-scroll-to-active fallback.",
+        "version": "1.0.0",
+        "defaultPosition": "afterBody",
+        "defaultPriority": 0
+      }
+    }
+  }
+}
