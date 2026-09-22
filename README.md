@@ -23,4 +23,5 @@ npm run build
 
 ## Plugins
 
+- `content-meta`: displays created and updated dates plus reading time below article titles.
 - `explorer-override`: keeps Explorer navigation state consistent across mobile layout changes.

@@ -1,0 +1,58 @@
+{
+  "name": "@otton/content-meta",
+  "version": "1.0.0",
+  "type": "module",
+  "description": "Quartz v5 content metadata component for otton.org.",
+  "files": [
+    "dist",
+    "src",
+    "README.md"
+  ],
+  "exports": {
+    "./components": {
+      "types": "./src/components/index.tsx",
+      "import": "./dist/components/index.js"
+    }
+  },
+  "scripts": {
+    "build": "esbuild src/components/index.tsx --bundle --packages=external --platform=node --format=esm --target=node22 --outfile=dist/components/index.js",
+    "test": "node --import tsx --test \"src/**/*.test.tsx\"",
+    "typecheck": "tsc --noEmit"
+  },
+  "peerDependencies": {
+    "@quartz-community/types": "^0.3.0",
+    "preact": "^10.0.0"
+  },
+  "devDependencies": {
+    "@quartz-community/types": "^0.3.0",
+    "@types/node": "^25.0.10",
+    "esbuild": "^0.27.2",
+    "preact": "^10.28.2",
+    "preact-render-to-string": "^6.6.5",
+    "tsx": "^4.21.0",
+    "typescript": "^5.9.3"
+  },
+  "engines": {
+    "node": ">=22",
+    "npm": ">=10.9.2"
+  },
+  "quartz": {
+    "name": "content-meta",
+    "displayName": "ContentMeta",
+    "description": "Displays created month, optional last-updated month, and reading time.",
+    "version": "1.0.0",
+    "category": [
+      "component"
+    ],
+    "components": {
+      "ContentMeta": {
+        "name": "ContentMeta",
+        "displayName": "ContentMeta",
+        "description": "Displays created month, optional last-updated month, and reading time.",
+        "version": "1.0.0",
+        "defaultPosition": "beforeBody",
+        "defaultPriority": 20
+      }
+    }
+  }
+}
