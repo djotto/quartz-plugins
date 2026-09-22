@@ -1,0 +1,77 @@
+// Modern table of contents layout.
+.toc {
+  display: flex;
+  flex-direction: column;
+  overflow-y: hidden;
+  min-height: 1.4rem;
+  flex: 0 0.5 auto;
+  max-width: 100%;
+  &:has(button.toc-header.collapsed) {
+    flex: 0 1 1.4rem;
+  }
+}
+
+button.toc-header {
+  background: transparent;
+  border: 0;
+  color: var(--dark);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  min-height: 2rem;
+  padding: 0;
+  text-align: left;
+  &:focus-visible {
+    outline: 2px solid var(--secondary);
+    outline-offset: 3px;
+  }
+  & h3 {
+    font-size: 1rem;
+    display: inline-block;
+    margin: 0;
+  }
+  & .fold {
+    margin-left: 0.5rem;
+    opacity: 0.8;
+    transition: transform 0.3s ease;
+  }
+  &.collapsed .fold {
+    transform: rotateZ(-90deg);
+  }
+}
+
+ul.toc-content {
+  list-style: none;
+  margin: 0.5rem 0;
+  max-width: 100%;
+  overflow-x: hidden;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  padding: 0;
+  &.collapsed {
+    display: none;
+  }
+  & > li > a {
+    color: var(--gray);
+    display: block;
+    opacity: 1;
+    overflow-wrap: anywhere;
+    transition:
+      0.5s ease opacity,
+      0.3s ease color;
+    &.in-view {
+      color: var(--darkgray);
+    }
+  }
+  @for $i from 0 through 6 {
+    & .depth-#{$i} {
+      padding-left: calc(1rem * #{$i});
+    }
+  }
+}
+
+@media all and (max-width: 800px) {
+  .toc.desktop-only {
+    display: none;
+  }
+}

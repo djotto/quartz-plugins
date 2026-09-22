@@ -1,0 +1,104 @@
+{
+  "name": "@otton/toc",
+  "version": "1.0.0",
+  "description": "Quartz v5 table of contents with v4 navigation parity.",
+  "type": "module",
+  "files": [
+    "dist",
+    "src",
+    "types",
+    "README.md"
+  ],
+  "exports": {
+    ".": {
+      "types": "./src/index.ts",
+      "import": "./dist/index.js"
+    },
+    "./components": {
+      "types": "./src/components/index.ts",
+      "import": "./dist/components/index.js"
+    }
+  },
+  "main": "./dist/index.js",
+  "types": "./src/index.ts",
+  "scripts": {
+    "build": "tsup",
+    "test": "node --import tsx --test \"src/**/*.test.ts\"",
+    "typecheck": "tsc --noEmit"
+  },
+  "peerDependencies": {
+    "@quartz-community/types": "^0.3.0",
+    "mdast-util-to-string": "^4.0.0",
+    "preact": "^10.27.2",
+    "unist-util-visit": "^5.1.0",
+    "vfile": "^6.0.3"
+  },
+  "devDependencies": {
+    "@types/mdast": "^4.0.4",
+    "@types/node": "^25.0.10",
+    "@quartz-community/types": "^0.3.0",
+    "esbuild": "^0.27.2",
+    "github-slugger": "^2.0.0",
+    "mdast-util-to-string": "^4.0.0",
+    "preact": "^10.27.2",
+    "sass": "^1.93.2",
+    "tsup": "^8.5.0",
+    "tsx": "^4.21.0",
+    "typescript": "^5.9.3",
+    "unist-util-visit": "^5.1.0",
+    "vfile": "^6.0.3"
+  },
+  "engines": {
+    "node": ">=22",
+    "npm": ">=10.9.2"
+  },
+  "quartz": {
+    "name": "toc",
+    "displayName": "Table of Contents",
+    "description": "v4-style desktop TOC with active heading tracking and collapsible navigation.",
+    "version": "1.0.0",
+    "quartzVersion": ">=5.0.0",
+    "category": [
+      "transformer",
+      "component"
+    ],
+    "defaultOrder": 50,
+    "defaultEnabled": true,
+    "defaultOptions": {
+      "maxDepth": 3,
+      "minEntries": 1,
+      "showByDefault": true,
+      "collapseByDefault": false,
+      "layout": "modern"
+    },
+    "components": {
+      "TableOfContents": {
+        "displayName": "Table of Contents",
+        "defaultPosition": "left",
+        "defaultPriority": 55
+      }
+    },
+    "optionSchema": {
+      "maxDepth": {
+        "type": "number"
+      },
+      "minEntries": {
+        "type": "number"
+      },
+      "showByDefault": {
+        "type": "boolean"
+      },
+      "collapseByDefault": {
+        "type": "boolean"
+      },
+      "layout": {
+        "type": "enum",
+        "values": [
+          "modern",
+          "legacy"
+        ]
+      }
+    },
+    "dependencies": []
+  }
+}
