@@ -1,0 +1,421 @@
+{
+  "name": "@otton/fonts",
+  "version": "1.0.0",
+  "description": "Fine-grained font configuration and loading for Quartz v5.",
+  "type": "module",
+  "license": "MIT",
+  "author": "Quartz Community",
+  "homepage": "https://quartz.jzhao.xyz",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/djotto/quartz-plugins",
+    "directory": "plugins/fonts"
+  },
+  "keywords": [
+    "quartz",
+    "quartz-plugin",
+    "fonts",
+    "typography",
+    "obsidian"
+  ],
+  "files": [
+    "dist",
+    "src",
+    "types",
+    "README.md",
+    "LICENSE",
+    "CHANGELOG.md",
+    "ARCHITECTURE.md",
+    "EXAMPLES.md"
+  ],
+  "exports": {
+    ".": {
+      "types": "./src/index.ts",
+      "import": "./dist/index.js"
+    },
+    "./types": {
+      "types": "./src/types.ts",
+      "import": "./dist/types.js"
+    },
+    "./package.json": "./package.json"
+  },
+  "main": "./dist/index.js",
+  "types": "./src/index.ts",
+  "sideEffects": false,
+  "scripts": {
+    "build": "tsup",
+    "dev": "tsup --watch",
+    "format": "prettier . --check",
+    "test": "vitest run && node --import tsx --test \"test/**/*.node.test.ts\"",
+    "typecheck": "tsc --noEmit",
+    "check": "npm run typecheck && npm run format && npm run test"
+  },
+  "peerDependencies": {
+    "@quartz-community/types": "^0.3.0",
+    "@quartz-community/utils": "^0.1.0",
+    "google-font-metadata": "^6.0.0",
+    "preact": "^10.27.2",
+    "vfile": "^6.0.3"
+  },
+  "peerDependenciesMeta": {
+    "google-font-metadata": {
+      "optional": true
+    },
+    "preact": {
+      "optional": false
+    },
+    "vfile": {
+      "optional": true
+    }
+  },
+  "devDependencies": {
+    "@quartz-community/types": "^0.3.0",
+    "@quartz-community/utils": "^0.1.0",
+    "@types/hast": "^3.0.4",
+    "@types/mdast": "^4.0.4",
+    "@types/node": "^25.0.10",
+    "esbuild": "^0.27.2",
+    "github-slugger": "^2.0.0",
+    "hast-util-to-jsx-runtime": "^2.3.6",
+    "preact": "^10.28.2",
+    "prettier": "^3.6.2",
+    "sass": "^1.97.3",
+    "tsup": "^8.5.0",
+    "tsx": "^4.21.0",
+    "typescript": "^5.9.3",
+    "unified": "^11.0.5",
+    "vfile": "^6.0.3",
+    "vitest": "^4.1.11"
+  },
+  "quartz": {
+    "name": "fonts",
+    "displayName": "Fonts",
+    "category": [
+      "transformer",
+      "emitter"
+    ],
+    "version": "1.0.0",
+    "quartzVersion": ">=5.0.0",
+    "dependencies": [],
+    "defaultOrder": 60,
+    "defaultEnabled": false,
+    "defaultOptions": {
+      "useThemeFonts": true,
+      "fontOrigin": "googleFonts"
+    },
+    "optionSchema": {
+      "title": {
+        "oneOf": [
+          {
+            "type": "string"
+          },
+          {
+            "type": "object",
+            "properties": {
+              "name": {
+                "type": "string"
+              },
+              "weights": {
+                "type": "array",
+                "items": {
+                  "type": "number"
+                }
+              },
+              "includeItalic": {
+                "type": "boolean"
+              }
+            },
+            "required": [
+              "name"
+            ]
+          }
+        ]
+      },
+      "body": {
+        "oneOf": [
+          {
+            "type": "string"
+          },
+          {
+            "type": "object",
+            "properties": {
+              "name": {
+                "type": "string"
+              },
+              "weights": {
+                "type": "array",
+                "items": {
+                  "type": "number"
+                }
+              },
+              "includeItalic": {
+                "type": "boolean"
+              }
+            },
+            "required": [
+              "name"
+            ]
+          }
+        ]
+      },
+      "header": {
+        "oneOf": [
+          {
+            "type": "string"
+          },
+          {
+            "type": "object",
+            "properties": {
+              "name": {
+                "type": "string"
+              },
+              "weights": {
+                "type": "array",
+                "items": {
+                  "type": "number"
+                }
+              },
+              "includeItalic": {
+                "type": "boolean"
+              }
+            },
+            "required": [
+              "name"
+            ]
+          }
+        ]
+      },
+      "code": {
+        "oneOf": [
+          {
+            "type": "string"
+          },
+          {
+            "type": "object",
+            "properties": {
+              "name": {
+                "type": "string"
+              },
+              "weights": {
+                "type": "array",
+                "items": {
+                  "type": "number"
+                }
+              },
+              "includeItalic": {
+                "type": "boolean"
+              }
+            },
+            "required": [
+              "name"
+            ]
+          }
+        ]
+      },
+      "interface": {
+        "oneOf": [
+          {
+            "type": "string"
+          },
+          {
+            "type": "object",
+            "properties": {
+              "name": {
+                "type": "string"
+              },
+              "weights": {
+                "type": "array",
+                "items": {
+                  "type": "number"
+                }
+              },
+              "includeItalic": {
+                "type": "boolean"
+              }
+            },
+            "required": [
+              "name"
+            ]
+          }
+        ]
+      },
+      "h1": {
+        "oneOf": [
+          {
+            "type": "string"
+          },
+          {
+            "type": "object",
+            "properties": {
+              "name": {
+                "type": "string"
+              },
+              "weights": {
+                "type": "array",
+                "items": {
+                  "type": "number"
+                }
+              },
+              "includeItalic": {
+                "type": "boolean"
+              }
+            },
+            "required": [
+              "name"
+            ]
+          }
+        ]
+      },
+      "h2": {
+        "oneOf": [
+          {
+            "type": "string"
+          },
+          {
+            "type": "object",
+            "properties": {
+              "name": {
+                "type": "string"
+              },
+              "weights": {
+                "type": "array",
+                "items": {
+                  "type": "number"
+                }
+              },
+              "includeItalic": {
+                "type": "boolean"
+              }
+            },
+            "required": [
+              "name"
+            ]
+          }
+        ]
+      },
+      "h3": {
+        "oneOf": [
+          {
+            "type": "string"
+          },
+          {
+            "type": "object",
+            "properties": {
+              "name": {
+                "type": "string"
+              },
+              "weights": {
+                "type": "array",
+                "items": {
+                  "type": "number"
+                }
+              },
+              "includeItalic": {
+                "type": "boolean"
+              }
+            },
+            "required": [
+              "name"
+            ]
+          }
+        ]
+      },
+      "h4": {
+        "oneOf": [
+          {
+            "type": "string"
+          },
+          {
+            "type": "object",
+            "properties": {
+              "name": {
+                "type": "string"
+              },
+              "weights": {
+                "type": "array",
+                "items": {
+                  "type": "number"
+                }
+              },
+              "includeItalic": {
+                "type": "boolean"
+              }
+            },
+            "required": [
+              "name"
+            ]
+          }
+        ]
+      },
+      "h5": {
+        "oneOf": [
+          {
+            "type": "string"
+          },
+          {
+            "type": "object",
+            "properties": {
+              "name": {
+                "type": "string"
+              },
+              "weights": {
+                "type": "array",
+                "items": {
+                  "type": "number"
+                }
+              },
+              "includeItalic": {
+                "type": "boolean"
+              }
+            },
+            "required": [
+              "name"
+            ]
+          }
+        ]
+      },
+      "h6": {
+        "oneOf": [
+          {
+            "type": "string"
+          },
+          {
+            "type": "object",
+            "properties": {
+              "name": {
+                "type": "string"
+              },
+              "weights": {
+                "type": "array",
+                "items": {
+                  "type": "number"
+                }
+              },
+              "includeItalic": {
+                "type": "boolean"
+              }
+            },
+            "required": [
+              "name"
+            ]
+          }
+        ]
+      },
+      "useThemeFonts": {
+        "type": "boolean"
+      },
+      "fontOrigin": {
+        "type": "string",
+        "enum": [
+          "googleFonts",
+          "local",
+          "selfHosted"
+        ]
+      }
+    }
+  },
+  "engines": {
+    "node": ">=22",
+    "npm": ">=10.9.2"
+  }
+}
