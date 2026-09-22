@@ -24,4 +24,5 @@ npm run build
 ## Plugins
 
 - `content-meta`: displays created and updated dates plus reading time below article titles.
+- `description-markdown`: renders frontmatter descriptions with the configured Markdown pipeline.
 - `explorer-override`: keeps Explorer navigation state consistent across mobile layout changes.
