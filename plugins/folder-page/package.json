@@ -1,0 +1,69 @@
+{
+  "name": "@otton/folder-page",
+  "version": "1.0.0",
+  "type": "module",
+  "description": "Quartz folder pages with custom list rendering and tagged includes.",
+  "files": [
+    "dist",
+    "src",
+    "README.md"
+  ],
+  "exports": {
+    ".": {
+      "types": "./src/index.ts",
+      "import": "./dist/index.js"
+    }
+  },
+  "main": "./dist/index.js",
+  "types": "./src/index.ts",
+  "scripts": {
+    "build": "esbuild src/index.ts --bundle --packages=external --platform=node --format=esm --target=node22 --jsx=transform --jsx-factory=h --outfile=dist/index.js",
+    "test": "node --import tsx --test \"src/**/*.test.tsx\"",
+    "typecheck": "tsc --noEmit"
+  },
+  "peerDependencies": {
+    "@quartz-community/folder-page": "^0.1.0",
+    "@quartz-community/types": "^0.3.0",
+    "@quartz-community/utils": "^0.1.0",
+    "hast-util-to-jsx-runtime": "^2.3.6",
+    "preact": "^10.27.2",
+    "remark-parse": "^11.0.0",
+    "remark-rehype": "^11.1.2",
+    "unified": "^11.0.5",
+    "vfile": "^6.0.3"
+  },
+  "devDependencies": {
+    "@quartz-community/folder-page": "^0.1.0",
+    "@quartz-community/types": "^0.3.0",
+    "@quartz-community/utils": "^0.1.0",
+    "@types/hast": "^3.0.4",
+    "@types/node": "^25.0.10",
+    "esbuild": "^0.27.2",
+    "hast-util-to-jsx-runtime": "^2.3.6",
+    "preact": "^10.27.2",
+    "preact-render-to-string": "^6.6.6",
+    "remark-parse": "^11.0.0",
+    "remark-rehype": "^11.1.2",
+    "tsx": "^4.21.0",
+    "typescript": "^5.9.3",
+    "unified": "^11.0.5",
+    "vfile": "^6.0.3"
+  },
+  "engines": {
+    "node": ">=22",
+    "npm": ">=10.9.2"
+  },
+  "quartz": {
+    "name": "folder-page",
+    "displayName": "Folder Page",
+    "description": "Wraps the community FolderPage with Otton list rendering and tagged includes.",
+    "version": "1.0.0",
+    "category": "pageType",
+    "defaultOrder": 50,
+    "defaultEnabled": false,
+    "quartzVersion": ">=5.0.0",
+    "defaultOptions": {},
+    "optionSchema": {},
+    "dependencies": []
+  }
+}
