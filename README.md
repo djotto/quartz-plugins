@@ -33,5 +33,6 @@ npm run build
 - `fonts`: provides fine-grained typography configuration and Google Fonts loading.
 - `folder-page`: renders folder indexes with tagged includes, list styling, and sorting.
 - `frontmatter`: parses YAML frontmatter while preserving Quartz v4 metadata semantics.
+- `map`: turns GeoJSON directives into interactive maps with filtering and spatial overlays.
 - `tag-page`: renders tag indexes and pages with otton.org list styling and sorting.
 - `toc`: provides v4-style table of contents generation and navigation behaviour.
