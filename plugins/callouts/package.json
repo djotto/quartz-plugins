@@ -1,0 +1,57 @@
+{
+  "name": "@otton/callouts",
+  "version": "1.0.0",
+  "type": "module",
+  "description": "Quartz v5 post-OFM transformer for otton.org callout metadata and variants.",
+  "files": [
+    "dist",
+    "src",
+    "README.md"
+  ],
+  "exports": {
+    ".": {
+      "types": "./src/index.ts",
+      "import": "./dist/index.js"
+    }
+  },
+  "scripts": {
+    "build": "esbuild src/index.ts --bundle --packages=external --platform=node --format=esm --target=node22 --outfile=dist/index.js",
+    "test": "node --import tsx --test \"src/**/*.test.ts\"",
+    "typecheck": "tsc --noEmit"
+  },
+  "peerDependencies": {
+    "@quartz-community/types": "^0.3.0",
+    "unist-util-visit": "^5.1.0",
+    "vfile": "^6.0.3"
+  },
+  "devDependencies": {
+    "@quartz-community/obsidian-flavored-markdown": "^0.1.1",
+    "@quartz-community/types": "^0.3.0",
+    "@types/hast": "^3.0.4",
+    "@types/node": "^25.0.10",
+    "esbuild": "^0.27.2",
+    "hast-util-to-html": "^9.0.5",
+    "remark-parse": "^11.0.0",
+    "remark-rehype": "^11.1.2",
+    "tsx": "^4.21.0",
+    "typescript": "^5.9.3",
+    "unified": "^11.0.5",
+    "unist-util-visit": "^5.1.0",
+    "vfile": "^6.0.3"
+  },
+  "engines": {
+    "node": ">=22",
+    "npm": ">=10.9.2"
+  },
+  "quartz": {
+    "name": "callouts",
+    "displayName": "Callouts",
+    "description": "Normalizes OFM callout metadata, exposes source and variant attributes, and styles otton.org callout variants.",
+    "version": "1.0.0",
+    "category": "transformer",
+    "defaultOrder": 31,
+    "dependencies": [
+      "@quartz-community/obsidian-flavored-markdown"
+    ]
+  }
+}

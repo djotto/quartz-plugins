@@ -23,6 +23,7 @@ npm run build
 
 ## Plugins
 
+- `callouts`: normalizes OFM callout metadata and styles custom callout variants.
 - `content-meta`: displays created and updated dates plus reading time below article titles.
 - `description-markdown`: renders frontmatter descriptions with the configured Markdown pipeline.
 - `explorer-override`: keeps Explorer navigation state consistent across mobile layout changes.
