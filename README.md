@@ -29,6 +29,7 @@ npm run build
 - `description-markdown`: renders frontmatter descriptions with the configured Markdown pipeline.
 - `explorer-override`: keeps Explorer navigation state consistent across mobile layout changes.
 - `filename-date-override`: derives missing note dates from filenames and meaningful Git history.
+- `figures`: renders image captions, comparisons, and the shared figure carousel.
 - `fonts`: provides fine-grained typography configuration and Google Fonts loading.
 - `folder-page`: renders folder indexes with tagged includes, list styling, and sorting.
 - `frontmatter`: parses YAML frontmatter while preserving Quartz v4 metadata semantics.
