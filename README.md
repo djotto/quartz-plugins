@@ -26,3 +26,4 @@ npm run build
 - `content-meta`: displays created and updated dates plus reading time below article titles.
 - `description-markdown`: renders frontmatter descriptions with the configured Markdown pipeline.
 - `explorer-override`: keeps Explorer navigation state consistent across mobile layout changes.
+- `frontmatter`: parses YAML frontmatter while preserving Quartz v4 metadata semantics.

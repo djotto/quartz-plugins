@@ -1,0 +1,59 @@
+{
+  "name": "@otton/frontmatter",
+  "version": "1.0.0",
+  "type": "module",
+  "description": "Quartz v5 frontmatter transformer with otton.org metadata compatibility.",
+  "files": [
+    "dist",
+    "src",
+    "README.md"
+  ],
+  "exports": {
+    ".": {
+      "types": "./src/index.ts",
+      "import": "./dist/index.js"
+    }
+  },
+  "scripts": {
+    "build": "esbuild src/index.ts --bundle --packages=external --platform=node --format=esm --target=node22 --outfile=dist/index.js",
+    "test": "node --import tsx --test \"src/**/*.test.ts\"",
+    "typecheck": "tsc --noEmit"
+  },
+  "peerDependencies": {
+    "@quartz-community/types": "^0.3.0",
+    "@quartz-community/utils": "^0.1.0",
+    "vfile": "^6.0.3",
+    "yaml": "^2.8.2"
+  },
+  "devDependencies": {
+    "@quartz-community/types": "^0.3.0",
+    "@quartz-community/utils": "^0.1.0",
+    "@types/mdast": "^4.0.4",
+    "@types/node": "^25.0.10",
+    "esbuild": "^0.27.2",
+    "github-slugger": "^2.0.0",
+    "remark-parse": "^11.0.0",
+    "tsx": "^4.21.0",
+    "typescript": "^5.9.3",
+    "unified": "^11.0.5",
+    "vfile": "^6.0.3",
+    "yaml": "^2.8.2"
+  },
+  "engines": {
+    "node": ">=22",
+    "npm": ">=10.9.2"
+  },
+  "quartz": {
+    "name": "frontmatter",
+    "displayName": "Frontmatter",
+    "description": "Parses and strips YAML frontmatter while preserving Quartz v4 metadata semantics.",
+    "version": "1.0.0",
+    "quartzVersion": ">=5.0.0",
+    "category": "transformer",
+    "defaultOrder": 5,
+    "defaultEnabled": true,
+    "dependencies": [],
+    "defaultOptions": {},
+    "optionSchema": {}
+  }
+}
