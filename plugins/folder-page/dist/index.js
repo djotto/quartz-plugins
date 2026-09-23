@@ -203,17 +203,20 @@ function mostRecentDates(entries) {
     published: /* @__PURE__ */ new Date()
   };
 }
+function syntheticFolderDates(entries) {
+  return {
+    dates: mostRecentDates(entries),
+    defaultDateType: entries.find((entry) => entry.dates && entry.defaultDateType)?.defaultDateType ?? "created"
+  };
+}
 function pagesFromTrie(folder, showSubfolders) {
   return folder.children.map((node) => {
     if (node.data) return isListed(node.data) ? node.data : void 0;
     if (!node.isFolder || !showSubfolders) return void 0;
+    const children = node.children.map((child) => child.data).filter((page) => page !== null && isListed(page));
     return {
       slug: node.slug,
-      dates: mostRecentDates(
-        node.children.map((child) => child.data).filter(
-          (page) => page !== null && isListed(page)
-        )
-      ),
+      ...syntheticFolderDates(children),
       frontmatter: { title: node.displayName, tags: [] }
     };
   }).filter((page) => page !== void 0);
@@ -246,7 +249,7 @@ function pagesFromAllFiles(allFiles, folderSlug, showSubfolders) {
     }
     directChildren.push({
       slug: `${folderPrefix}${subfolderName}/index`,
-      dates: mostRecentDates(files),
+      ...syntheticFolderDates(files),
       frontmatter: { title: subfolderName, tags: [] }
     });
   }

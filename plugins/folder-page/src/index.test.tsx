@@ -165,3 +165,50 @@ test("FolderPage renders month/year dates", () => {
   assert.match(html, /Jan 2026/);
   assert.doesNotMatch(html, /18 Jan 2026/);
 });
+
+test("synthetic year folders show the latest listed child's creation month", () => {
+  const current = page("daily-notes/index");
+  const older = page("daily-notes/2007/2007-09-12", {
+    date: "2007-09-12T00:00:00Z",
+  });
+  const latest = page("daily-notes/2007/2007-12-17", {
+    date: "2007-12-17T00:00:00Z",
+  });
+  latest.dates!.modified = new Date("2026-09-01T00:00:00Z");
+  const unlisted = page("daily-notes/2007/2008-01-01", {
+    date: "2008-01-01T00:00:00Z",
+    unlisted: true,
+  });
+  const allFiles = [current, older, latest, unlisted];
+
+  const fallbackPages = pagesFromAllFiles(allFiles, current.slug!, true);
+  const year = fallbackPages.find(
+    (entry) => entry.frontmatter?.title === "2007",
+  );
+  assert.equal(year?.defaultDateType, "created");
+  assert.equal(year?.dates?.created.toISOString(), "2007-12-17T00:00:00.000Z");
+
+  const Component = FolderPage().body();
+  const fallbackHtml = renderToString(
+    h(Component as never, componentProps(current, allFiles)),
+  );
+  assert.match(fallbackHtml, /<time[^>]*>Dec 2007<\/time>[\s\S]*?>2007<\/a>/);
+  assert.doesNotMatch(fallbackHtml, /Sep 2026|Jan 2008/);
+
+  const trieProps = componentProps(current, allFiles);
+  (trieProps.ctx as { trie?: unknown }).trie = {
+    findNode: () => ({
+      children: [
+        {
+          isFolder: true,
+          slug: "daily-notes/2007/index",
+          displayName: "2007",
+          data: null,
+          children: [older, latest, unlisted].map((data) => ({ data })),
+        },
+      ],
+    }),
+  };
+  const trieHtml = renderToString(h(Component as never, trieProps));
+  assert.match(trieHtml, /<time[^>]*>Dec 2007<\/time>[\s\S]*?>2007<\/a>/);
+});

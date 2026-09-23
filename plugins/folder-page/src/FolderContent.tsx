@@ -62,21 +62,28 @@ function mostRecentDates(entries: PageEntry[]): PageEntry["dates"] {
   );
 }
 
+function syntheticFolderDates(entries: PageEntry[]) {
+  return {
+    dates: mostRecentDates(entries),
+    defaultDateType:
+      entries.find((entry) => entry.dates && entry.defaultDateType)
+        ?.defaultDateType ?? "created",
+  };
+}
+
 function pagesFromTrie(folder: TrieNode, showSubfolders: boolean): PageEntry[] {
   return folder.children
     .map((node) => {
       if (node.data) return isListed(node.data) ? node.data : undefined;
       if (!node.isFolder || !showSubfolders) return undefined;
 
+      const children = node.children
+        .map((child) => child.data)
+        .filter((page): page is PageEntry => page !== null && isListed(page));
+
       return {
         slug: node.slug as FullSlug,
-        dates: mostRecentDates(
-          node.children
-            .map((child) => child.data)
-            .filter(
-              (page): page is PageEntry => page !== null && isListed(page),
-            ),
-        ),
+        ...syntheticFolderDates(children),
         frontmatter: { title: node.displayName, tags: [] },
       } as PageEntry;
     })
@@ -124,7 +131,7 @@ export function pagesFromAllFiles(
 
     directChildren.push({
       slug: `${folderPrefix}${subfolderName}/index` as FullSlug,
-      dates: mostRecentDates(files),
+      ...syntheticFolderDates(files),
       frontmatter: { title: subfolderName, tags: [] },
     } as PageEntry);
   }
